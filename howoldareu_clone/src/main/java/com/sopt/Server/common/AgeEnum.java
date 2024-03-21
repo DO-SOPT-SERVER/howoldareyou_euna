@@ -18,5 +18,18 @@ public enum AgeEnum {
     private final String imageUrl1;
     private final String imageUrl2;
 
+    public static AgeEnum getAgeEnum(int age){
+        if(age < 20)
+            return AgeEnum.TEENAGER;
+        else if(age < 30)
+            return AgeEnum.TWENTIES;
+        else if(age < 40)
+            return AgeEnum.THIRTIES;
+        else if(age < 50)
+            return AgeEnum.FORTIES;
+        else
+            return AgeEnum.FIFTIES;
+    }
+
 }
 
