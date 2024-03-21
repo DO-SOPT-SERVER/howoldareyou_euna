@@ -1,6 +1,6 @@
 package com.sopt.Server.service;
 
-import com.sopt.Server.common.AgeEnum;
+import com.sopt.Server.domain.enums.AgeEnum;
 import com.sopt.Server.controller.request.AnswerListRequestDTO;
 import com.sopt.Server.controller.request.AnswerRequestDTO;
 import com.sopt.Server.controller.response.AllResultsResponseDTO;

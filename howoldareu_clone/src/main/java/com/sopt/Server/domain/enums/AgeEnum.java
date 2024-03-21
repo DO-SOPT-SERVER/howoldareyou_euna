@@ -1,4 +1,4 @@
-package com.sopt.Server.common;
+package com.sopt.Server.domain.enums;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
