@@ -1,10 +1,10 @@
 package com.sopt.Server.service;
 
 import com.sopt.Server.domain.enums.AgeEnum;
-import com.sopt.Server.controller.request.AnswerListRequestDTO;
-import com.sopt.Server.controller.request.AnswerRequestDTO;
-import com.sopt.Server.controller.response.AllResultsResponseDTO;
-import com.sopt.Server.controller.response.ResultResponseDTO;
+import com.sopt.Server.controller.request.AnswerListRequest;
+import com.sopt.Server.controller.request.AnswerRequest;
+import com.sopt.Server.controller.response.AllResultsResponse;
+import com.sopt.Server.controller.response.ResultResponse;
 import com.sopt.Server.domain.Answer;
 import com.sopt.Server.domain.Member;
 import com.sopt.Server.domain.Question;
@@ -32,28 +32,28 @@ public class ResultService {
     private final QuestionJpaRepository questionJpaRepository;
 
     @Transactional
-    public ResultResponseDTO saveResult(AnswerListRequestDTO request) {
+    public ResultResponse saveResult(AnswerListRequest request) {
         Member member = memberJpaRepository.findByName(request.nickname()).orElseThrow(()->new CustomException(Error.NOT_FOUND_MEMBER_EXCEPTION,Error.NOT_FOUND_MEMBER_EXCEPTION.getMessage()));
         int memberAge = member.getRealAge();
-        for(AnswerRequestDTO result : request.results()){
+        for(AnswerRequest result : request.results()){
             Question question = questionJpaRepository.findById(result.questionId()).orElseThrow(()->new CustomException(Error.NOT_FOUND_QUESTION_EXCEPTION,Error.NOT_FOUND_QUESTION_EXCEPTION.getMessage()));
             Answer answer = answerJpaRepository.findByQuestionAndAnswerType(question, result.answerType()).orElseThrow(()->new CustomException(Error.NOT_FOUND_ANSWER_EXCEPTION,Error.NOT_FOUND_ANSWER_EXCEPTION.getMessage()));
             memberAge += answer.getAnswerScore();
         }
         AgeEnum ageEnum = AgeEnum.getAgeEnum(memberAge);
         resultJpaRepository.save(Result.builder().member(member).resultAge(memberAge).build());
-        return ResultResponseDTO.of(request.nickname(),memberAge,ageEnum.getTitle(),ageEnum.getContent(),ageEnum.getImageUrl1(), ageEnum.getImageUrl2());
+        return ResultResponse.of(request.nickname(),memberAge,ageEnum.getTitle(),ageEnum.getContent(),ageEnum.getImageUrl1(), ageEnum.getImageUrl2());
     }
 
-    public List<AllResultsResponseDTO> getAllResults(Long memberId) {
+    public List<AllResultsResponse> getAllResults(Long memberId) {
 
         List<Result> resultList  = resultJpaRepository.findAllByMemberIdOrderByIdDesc(memberId);
-        List<AllResultsResponseDTO> answer = new ArrayList<>();
+        List<AllResultsResponse> answer = new ArrayList<>();
 
         for(Result result : resultList) {
             AgeEnum ageEnum = AgeEnum.getAgeEnum(result.getResultAge());
             String time = result.getTestedDateToString();
-            AllResultsResponseDTO dto = AllResultsResponseDTO.of(result, ageEnum.getTitle(), ageEnum.getContent(), time, ageEnum.getImageUrl1(), ageEnum.getImageUrl2());
+            AllResultsResponse dto = AllResultsResponse.of(result, ageEnum.getTitle(), ageEnum.getContent(), time, ageEnum.getImageUrl1(), ageEnum.getImageUrl2());
             answer.add(dto);
         }
 

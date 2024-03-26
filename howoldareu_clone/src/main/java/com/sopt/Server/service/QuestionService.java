@@ -1,6 +1,6 @@
 package com.sopt.Server.service;
 
-import com.sopt.Server.controller.response.GetQuestionResponseDTO;
+import com.sopt.Server.controller.response.GetQuestionResponse;
 import com.sopt.Server.domain.Question;
 import com.sopt.Server.repository.QuestionJpaRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,13 +16,13 @@ import java.util.List;
 public class QuestionService {
     private final QuestionJpaRepository questionJpaRepository;
 
-    public List<GetQuestionResponseDTO> getQuestionResponseDTOList() {
+    public List<GetQuestionResponse> getQuestionResponseDTOList() {
         List<Question> questionList = questionJpaRepository.findAll();
-        List<GetQuestionResponseDTO> getQuestionResponseDTOList = new ArrayList<>();
+        List<GetQuestionResponse> getQuestionResponseList = new ArrayList<>();
         for(Question question : questionList){
-            getQuestionResponseDTOList.add(GetQuestionResponseDTO.of(question.getQuestionId(),question.getQuestionContent()));
+            getQuestionResponseList.add(GetQuestionResponse.of(question.getQuestionId(),question.getQuestionContent()));
         }
-        return getQuestionResponseDTOList;
+        return getQuestionResponseList;
     }
 
 }
