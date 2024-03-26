@@ -21,6 +21,11 @@ class MemberControllerTest extends RestDocsSupport {
     private final MemberService memberService = mock(MemberService.class);
     private static final String MEMBER_POST_URL = "/member";
 
+    @Override
+    protected Object initializeController() {
+        return new MemberController(memberService);
+    }
+
     @Test
     @DisplayName("사용자를 등록한다")
     void saveMemberTest() throws Exception {
@@ -53,10 +58,5 @@ class MemberControllerTest extends RestDocsSupport {
                                 fieldWithPath("data.realAge").type(JsonFieldType.NUMBER).description("회원 나이")
                         )
                 ));
-    }
-
-    @Override
-    protected Object initializeController() {
-        return new MemberController(memberService);
     }
 }
