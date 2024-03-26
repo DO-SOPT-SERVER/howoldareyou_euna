@@ -16,7 +16,7 @@ import java.util.List;
 public class QuestionService {
     private final QuestionJpaRepository questionJpaRepository;
 
-    public List<GetQuestionResponse> getQuestionResponseDTOList() {
+    public List<GetQuestionResponse> getQuestionResponseList() {
         List<Question> questionList = questionJpaRepository.findAll();
         List<GetQuestionResponse> getQuestionResponseList = new ArrayList<>();
         for(Question question : questionList){

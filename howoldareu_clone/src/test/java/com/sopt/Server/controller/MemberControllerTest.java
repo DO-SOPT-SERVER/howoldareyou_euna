@@ -35,8 +35,7 @@ class MemberControllerTest extends RestDocsSupport {
         MemberPostRequest request = new MemberPostRequest("euna", 24);
 
         // when
-        ResultActions result = this.mockMvc.perform(
-                post(MEMBER_POST_URL)
+        ResultActions result = mockMvc.perform(post(MEMBER_POST_URL)
                         .content(objectMapper.writeValueAsString(request))
                         .contentType(json)
                         .accept(json)

@@ -18,8 +18,8 @@ public class QuestionController {
     private final QuestionService questionService;
 
     @GetMapping("")
-    public ApiResponse<List<GetQuestionResponse>> getQuestionResponseDTOList() {
-        return ApiResponse.success(Success.GET_QUESTION_LIST_SUCCESS,questionService.getQuestionResponseDTOList());
+    public ApiResponse<List<GetQuestionResponse>> getQuestionResponseList() {
+        return ApiResponse.success(Success.GET_QUESTION_LIST_SUCCESS,questionService.getQuestionResponseList());
     }
 
 }
