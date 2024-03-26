@@ -7,8 +7,10 @@ import com.sopt.Server.controller.response.ResultResponse;
 import com.sopt.Server.exception.Success;
 import com.sopt.Server.service.ResultService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -18,8 +20,10 @@ public class ResultController {
     private final ResultService resultService;
 
     @PostMapping("")
-    public ApiResponse<ResultResponse> saveResult(@RequestBody AnswerListRequest answerListRequestDTO){
-        return ApiResponse.success(Success.CREATE_RESULT_SUCCESS,resultService.saveResult(answerListRequestDTO));
+    public ResponseEntity<ApiResponse<ResultResponse>> saveResult(@RequestBody AnswerListRequest answerListRequestDTO){
+        ResultResponse response = resultService.saveResult(answerListRequestDTO);
+        URI uri = URI.create("/result");
+        return ResponseEntity.created(uri).body(ApiResponse.success(Success.CREATE_RESULT_SUCCESS,response));
     }
 
     @GetMapping("/{memberId}")
