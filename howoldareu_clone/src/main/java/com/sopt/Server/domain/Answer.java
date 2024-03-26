@@ -14,7 +14,7 @@ public class Answer {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long answerId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Question question;
 
     private boolean answerType;
