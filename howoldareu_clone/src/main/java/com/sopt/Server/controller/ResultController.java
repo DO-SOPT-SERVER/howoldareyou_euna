@@ -1,14 +1,16 @@
 package com.sopt.Server.controller;
 
 import com.sopt.Server.common.ApiResponse;
-import com.sopt.Server.controller.request.AnswerListRequestDTO;
-import com.sopt.Server.controller.response.AllResultsResponseDTO;
-import com.sopt.Server.controller.response.ResultResponseDTO;
+import com.sopt.Server.controller.request.AnswerListRequest;
+import com.sopt.Server.controller.response.AllResultsResponse;
+import com.sopt.Server.controller.response.ResultResponse;
 import com.sopt.Server.exception.Success;
 import com.sopt.Server.service.ResultService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -18,12 +20,14 @@ public class ResultController {
     private final ResultService resultService;
 
     @PostMapping("")
-    public ApiResponse<ResultResponseDTO> saveResult(@RequestBody AnswerListRequestDTO answerListRequestDTO){
-        return ApiResponse.success(Success.CREATE_RESULT_SUCCESS,resultService.saveResult(answerListRequestDTO));
+    public ResponseEntity<ApiResponse<ResultResponse>> saveResult(@RequestBody AnswerListRequest answerListRequestDTO){
+        ResultResponse response = resultService.saveResult(answerListRequestDTO);
+        URI uri = URI.create("/result");
+        return ResponseEntity.created(uri).body(ApiResponse.success(Success.CREATE_RESULT_SUCCESS,response));
     }
 
     @GetMapping("/{memberId}")
-    public ApiResponse<List<AllResultsResponseDTO>> getAllResults(@PathVariable Long memberId) {
+    public ApiResponse<List<AllResultsResponse>> getAllResults(@PathVariable Long memberId) {
         return ApiResponse.success(Success.GET_USER_LIST_SUCCESS, resultService.getAllResults(memberId));
     }
 

@@ -1,0 +1,19 @@
+[[save-result]]
+== SAVE RESULT
+
+=== HTTP Request
+include::{snippets}/save-result/http-request.adoc[]
+
+=== HTTP Response
+include::{snippets}/save-result/http-response.adoc[]
+include::{snippets}/save-result/response-fields.adoc[]
+
+[[get-all-results]]
+== GET ALL RESULTS
+
+=== HTTP Request
+include::{snippets}/get-all-results/http-request.adoc[]
+
+=== HTTP Response
+include::{snippets}/get-all-results/http-response.adoc[]
+include::{snippets}/get-all-results/response-fields.adoc[]

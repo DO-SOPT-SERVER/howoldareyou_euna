@@ -34,4 +34,8 @@ public class Result{
         this.resultAge = resultAge;
         this.testedDate = testedDate;
     }
+
+    public String getTestedDateToString(){
+        return testedDate.getMonthValue() + "월 " + testedDate.getDayOfMonth() + "일";
+    }
 }

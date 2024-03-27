@@ -1,0 +1,9 @@
+[[save-member]]
+== Save Member
+
+=== HTTP Request
+include::{snippets}/save-member/http-request.adoc[]
+
+=== HTTP Response
+include::{snippets}/save-member/http-response.adoc[]
+include::{snippets}/save-member/response-fields.adoc[]
