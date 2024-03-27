@@ -1,45 +1,34 @@
 package com.sopt.Server.domain.enums;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class AgeEnumTest {
-    private static final int eighteen = 18;
-    private static final int twentyFive = 25;
-    private static final int thirtyOne = 31;
-    private static final int fortyThree = 43;
-    private static final int fiftyFive = 55;
+    private static final int NINETEEN = 19;
+    private static final int TWENTY_ONE = 21;
+    private static final int TWENTY_NINE = 29;
+    private static final int THIRTY_ONE = 31;
+    private static final int THIRTY_NINE = 39;
+    private static final int FORTY_ONE = 41;
+    private static final int FORTY_NINE = 49;
+    private static final int FIFTY_ONE = 51;
+
 
     @Test
-    @DisplayName("18세는 10대이다")
-    void getAgeEnumTeenager() {
-        assertEquals(AgeEnum.TEENAGER, AgeEnum.getAgeEnum(eighteen));
-    }
-
-    @Test
-    @DisplayName("25세는 20대이다")
-    void getAgeEnumTwenties() {
-        assertEquals(AgeEnum.TWENTIES, AgeEnum.getAgeEnum(twentyFive));
-    }
-
-    @Test
-    @DisplayName("31세는 30대이다")
-    void getAgeEnumThirties() {
-        assertEquals(AgeEnum.THIRTIES, AgeEnum.getAgeEnum(thirtyOne));
-    }
-
-    @Test
-    @DisplayName("43세는 40대이다")
-    void getAgeEnumForties() {
-        assertEquals(AgeEnum.FORTIES, AgeEnum.getAgeEnum(fortyThree));
-    }
-
-    @Test
-    @DisplayName("55세는 50대이다")
-    void getAgeEnumFifties() {
-        assertEquals(AgeEnum.FIFTIES, AgeEnum.getAgeEnum(fiftyFive));
+    @DisplayName("연령대로 원하는 정보를 가져올 수 있다.")
+    void getAgeEnum() {
+        // then
+        Assertions.assertThat(AgeEnum.getAgeEnum(NINETEEN)).isEqualTo(AgeEnum.TEENAGER);
+        Assertions.assertThat(AgeEnum.getAgeEnum(TWENTY_ONE)).isEqualTo(AgeEnum.TWENTIES);
+        Assertions.assertThat(AgeEnum.getAgeEnum(TWENTY_NINE)).isEqualTo(AgeEnum.TWENTIES);
+        Assertions.assertThat(AgeEnum.getAgeEnum(THIRTY_ONE)).isEqualTo(AgeEnum.THIRTIES);
+        Assertions.assertThat(AgeEnum.getAgeEnum(THIRTY_NINE)).isEqualTo(AgeEnum.THIRTIES);
+        Assertions.assertThat(AgeEnum.getAgeEnum(FORTY_ONE)).isEqualTo(AgeEnum.FORTIES);
+        Assertions.assertThat(AgeEnum.getAgeEnum(FORTY_NINE)).isEqualTo(AgeEnum.FORTIES);
+        Assertions.assertThat(AgeEnum.getAgeEnum(FIFTY_ONE)).isEqualTo(AgeEnum.FIFTIES);
     }
 
 }
