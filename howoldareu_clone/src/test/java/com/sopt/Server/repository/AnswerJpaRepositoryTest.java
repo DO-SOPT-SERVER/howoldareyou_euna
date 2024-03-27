@@ -3,7 +3,6 @@ package com.sopt.Server.repository;
 import com.sopt.Server.domain.Answer;
 import com.sopt.Server.domain.Question;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
