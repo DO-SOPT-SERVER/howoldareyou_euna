@@ -28,7 +28,7 @@ class MemberJpaRepositoryTest {
 
     @Test
     @DisplayName("이름으로 회원을 조회할 수 있다.")
-    void findByName() {
+    void findByNameTest() {
 
         // given
         Member member = Member.builder()
