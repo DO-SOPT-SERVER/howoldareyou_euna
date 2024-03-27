@@ -23,6 +23,7 @@ class AnswerJpaRepositoryTest {
     @AfterEach
     void tearDown() {
         answerJpaRepository.deleteAllInBatch();
+        questionJpaRepository.deleteAllInBatch();
     }
 
     @Test
