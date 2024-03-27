@@ -1,0 +1,9 @@
+[[get-question]]
+== GET Question
+
+=== HTTP Request
+include::{snippets}/get-questions/http-request.adoc[]
+
+=== HTTP Response
+include::{snippets}/get-questions/http-response.adoc[]
+include::{snippets}/get-questions/response-fields.adoc[]
